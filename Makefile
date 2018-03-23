@@ -5,7 +5,7 @@ DOCKER_NAMESPACE=nouchka
 .DEFAULT_GOAL := build
 
 run:
-	docker run $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) sh -c "echo $(TEST_FUNC)|/usr/bin/$(DOCKER_IMAGE)"
+	docker run --rm $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) sh -c "echo $(TEST_FUNC)|/usr/bin/$(DOCKER_IMAGE)"
 
 build:
 	faas-cli build -f $(DOCKER_IMAGE).yml
