@@ -1,12 +1,11 @@
-DOCKER_IMAGE=semver-increment
+include ENV
+
 DOCKER_NAMESPACE=nouchka
 
 .DEFAULT_GOAL := build
 
 run:
-	docker run $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) sh -c "echo -M 1.2.3|/usr/bin/$(DOCKER_IMAGE)"
-	docker run $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) sh -c "echo -m 1.2.3|/usr/bin/$(DOCKER_IMAGE)"
-	docker run $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) sh -c "echo -p 1.2.3|/usr/bin/$(DOCKER_IMAGE)"
+	docker run $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE) sh -c "echo $(TEST_FUNC)|/usr/bin/$(DOCKER_IMAGE)"
 
 build:
 	faas-cli build -f $(DOCKER_IMAGE).yml
